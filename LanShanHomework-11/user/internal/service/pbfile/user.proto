@@ -1,0 +1,27 @@
+syntax="proto3";
+
+option go_package="./user/internal/service;service";
+
+
+message Request{
+  // @inject_tag: json:"username" form:"username"
+  string Username = 1;
+  // @inject_tag: json:"password" form:"password"
+  string Password = 2;
+}
+
+message RegisterResponse{
+  string msg = 1;
+}
+
+
+message LoginResponse{
+  int32 userId = 1;
+  string Token = 2;
+  string msg = 3;
+}
+
+service UserService{
+  rpc Register(Request) returns(RegisterResponse);
+  rpc Login(Request) returns(LoginResponse);
+}
